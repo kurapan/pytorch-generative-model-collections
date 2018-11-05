@@ -131,6 +131,9 @@ class LSGAN(object):
             self.data_loader = utils.load_celebA('data/celebA', transform=transforms.Compose(
                 [transforms.CenterCrop(160), transforms.Scale(64), transforms.ToTensor()]), batch_size=self.batch_size,
                                                  shuffle=True)
+        else:
+            self.data_loader = DataLoader(datasets.ImageFolder(root='../data/FSNS/train_split', transform=transforms.Compose(
+                [transforms.Resize(128), transforms.CenterCrop(128), transforms.ToTensor()], batch_size=self.batch_size, shuffle=True, num_workers=8)
         self.z_dim = 62
 
         # fixed noise
